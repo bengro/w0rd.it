@@ -8,3 +8,13 @@ Boots up MySQL and Apache webserver on http://localhost:8888. Deploys source and
 docker-compose up
 ```
 
+Libraries:
+* [Meekro](https://meekro.com/index.php) for MySQL connection and queries
+* [Flight](http://flightphp.com/learn/) for simple REST endpoints
+
+## Deployment
+To generate a deployable unit, run:
+```
+./prepare-deployment.sh
+```
+The generated directory, can be deployed on a Apache webserver supporting *htaccess*.
