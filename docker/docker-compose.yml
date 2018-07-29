@@ -1,0 +1,20 @@
+version: '2'
+services:
+  php:
+    build: ./apache
+    ports:
+    - "8888:80"
+    volumes:
+    - ./../backend/:/var/www/html
+    - ./../ui/dist/:/var/www/html/ui
+  mysql:
+    build: ./db
+    environment:
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: url_shortener
+    ports:
+    - "3306:3306"
+    expose:
+    - "3306"

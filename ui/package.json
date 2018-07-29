@@ -1,0 +1,39 @@
+{
+  "name": "url-shortener",
+  "version": "1.0.0",
+  "description": "URL Shortener front-end",
+  "main": "index.html",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bengro/url-shortener.git"
+  },
+  "author": "Benjamin Grohbiel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bengro/url-shortener/issues"
+  },
+  "homepage": "https://github.com/bengro/url-shortener#readme",
+  "dependencies": {
+    "angular": "~1.4.1",
+    "font-awesome": "~4.4.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.4.1",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.4.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-html-minifier": "^0.1.8",
+    "gulp-install": "^1.1.0",
+    "gulp-rev": "^8.1.1",
+    "gulp-uglify": "^3.0.1",
+    "gulp-usemin": "^0.3.29",
+    "jasmine-core": "^3.1.0",
+    "karma": "^2.0.5",
+    "karma-jasmine": "^1.1.2",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "phantomjs": "^2.1.7"
+  }
+}

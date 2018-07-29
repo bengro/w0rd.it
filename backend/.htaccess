@@ -1,0 +1,15 @@
+RewriteEngine On
+
+RewriteRule .* - [E=ENVIRONMENT:production]
+
+RewriteCond %{SERVER_NAME} localhost$
+RewriteRule .* - [E=ENVIRONMENT:develop]
+
+RewriteCond %{ENV:ENVIRONMENT} production
+RewriteCond %{HTTPS} =off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [QSA,L,R=301]
+
+RewriteCond %{REQUEST_URI} !^/ui/.*$
+RewriteRule ^(.*\.(html|css|js))$ /ui/$1 [L]
+RewriteRule ^$ /ui/ [L]
+RewriteRule ^([a-zA-Z0-9]*)$ redirect_filter.php?hash=$1 [L]
