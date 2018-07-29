@@ -23,6 +23,6 @@ if ($url != NULL) {
     die();
 } else {
     http_response_code(404);
-    include(dirname(__DIR__) . '/html/ui/404.html');
+    include(dirname(__FILE__) . '/ui/dist/404.html');
     die();
 }

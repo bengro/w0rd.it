@@ -6,7 +6,7 @@ services:
     - "8888:80"
     volumes:
     - ./../backend/:/var/www/html
-    - ./../ui/dist/:/var/www/html/ui
+    - ./../ui/:/var/www/html/ui
   mysql:
     build: ./db
     environment:
