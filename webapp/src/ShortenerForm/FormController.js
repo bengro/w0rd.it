@@ -36,6 +36,20 @@
         };
 
         $scope.fetchURLCount = function () {
+            var dictionary = firebase.database().ref("dictionary");
+            console.log(dictionary.once('value')
+              .then(function(data) {
+                console.log(data);
+              })
+            );
+
+          dictionary.onWrite((change, context) => {
+            const data = change.after.val();
+            const count = Object.keys(data).length;
+            console.log('count', count);
+            return change.after.ref.child('_count').set(count);
+          });
+
             $http.get('/api/stats').success(function (data) {
                 $scope.stats = data;
             });

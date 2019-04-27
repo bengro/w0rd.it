@@ -63,6 +63,22 @@
 
     <footer>There are {{ stats.remainingCount }} english words remaining.</footer>
 </form>
+
+<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCUoNeANw-js9SdAQUYfsxRfOly9c2q7A4",
+    authDomain: "w0rd-it.firebaseapp.com",
+    databaseURL: "https://w0rd-it.firebaseio.com",
+    projectId: "w0rd-it",
+    storageBucket: "w0rd-it.appspot.com",
+    messagingSenderId: "973427618174"
+  };
+  firebase.initializeApp(config);
+</script>
 </body>
 
 </html>

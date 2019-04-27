@@ -1,5 +1,5 @@
 .idea
-src/_tests
 *.iml
-temp-deploy
 .DS_Store
+.firebase/*.cache
+node_modules

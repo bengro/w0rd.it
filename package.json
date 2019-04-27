@@ -1,0 +1,22 @@
+{
+  "name": "w0rd.it",
+  "version": "1.0.0",
+  "description": "Word-based URL shortener, deployed at [w0rd.it](https://w0rd.it).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bengro/w0rd.it.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bengro/w0rd.it/issues"
+  },
+  "homepage": "https://github.com/bengro/w0rd.it#readme",
+  "dependencies": {
+    "firebase-tools": "^6.7.1"
+  }
+}
