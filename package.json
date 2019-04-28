@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/bengro/w0rd.it#readme",
   "dependencies": {
+    "firebase-admin": "^7.3.0",
     "firebase-tools": "^6.7.1"
   }
 }
