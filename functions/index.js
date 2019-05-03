@@ -13,8 +13,10 @@ exports.lookUpHash = functions.https.onRequest((request, response) => {
       snapshot.forEach(function(item) {
         var childData = item.val();
         if (item === 'admittedly') {
+          response.status(302);
           response.send("Found it!");
         } else {
+          response.status(404);
           response.send("Cool")
         }
       });
