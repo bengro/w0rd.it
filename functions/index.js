@@ -1,33 +1,45 @@
 const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+const url = require('url');
+
+const host = 'https://w0rd-it.firebaseapp.com/';
+
+admin.initializeApp(functions.config().firebase);
 
 exports.shortenUrl = functions.https.onRequest((request, response) => {
-  response.send("Shorten URL");
   console.log(request);
+  response.send("Shorten URL");
 });
 
 exports.lookUpHash = functions.https.onRequest((request, response) => {
-  response.send("Look up hash");
+  const url_parts = url.parse(request.url);
+  let hash = url_parts.pathname.replace('/', '');
+  console.log('Looking up hash:', hash);
 
-  functions.database.ref('/dictionary')
-    .on('value', function(snapshot) {
-      snapshot.forEach(function(item) {
-        var childData = item.val();
-        if (item === 'admittedly') {
-          response.status(302);
-          response.send("Found it!");
-        } else {
-          response.status(404);
-          response.send("Cool")
-        }
-      });
-    });
+  admin
+    .firestore()
+    .collection('words')
+    .doc(hash)
+    .get()
+    .then(doc => {
+      if (!doc.exists) {
+        throw Error('Hash does not exist for', hash);
+      }
 
-  console.log(request);
-});
+      const hashData = doc.data();
 
-exports.countAvailableWords = functions.database.ref(`/dictionary`).onWrite((change, context) => {
-  const data = change.after.val();
-  const count = Object.keys(data).length;
-  return change.after.ref.child('_count').set(count);
+      if (hashData.url) {
+        console.log(`Found hash ${hashData.hash} redirecting to ${hashData.url}`);
+        response.redirect(hashData.url);
+        return hashData;
+      }
+
+      throw Error(`Hash ${hashData.hash} does not have URL assigned to it`);
+    })
+    .catch(error => {
+      console.log(error);
+      response.redirect(`${host}404.html`).send();
+      return;
+    })
 });
 
