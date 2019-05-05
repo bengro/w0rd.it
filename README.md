@@ -9,11 +9,9 @@ Instead of a random hash, you get a memorable word. Try it out it at [w0rd.it](h
 The backend is deployed on Google Firebase, the frontend is written in ancient Angular 1.4.
 
 ## Deployment
-
-To deploy the frontend app, run:
+To deploy everything run:
 ```
-npm run dist
-node_modules/firebase-tools/lib/bin/firebase.js deploy
+./deploy
 ```
 
 To deploy cloud functions, run:
