@@ -9,24 +9,11 @@
     "rewrites": [
       {
         "source": "/*",
-        "function": "lookUpHash"
-      },
-      {
-        "source": "/api/shorten-url",
-        "function": "shortenUrl"
-      },
-      {
-        "source": "/api/count",
-        "function": "shortenUrl"
+        "function": "app"
       },
       {
         "source": "/",
         "destination": "/index.html"
-      },
-      {
-        "source": "/404.html",
-        "destination": "/404.html",
-        "type": 404
       }
     ]
   },

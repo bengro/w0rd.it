@@ -1,17 +1,16 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+const path = require('path');
 const url = require('url');
 
-const host = 'https://w0rd-it.firebaseapp.com/';
+const express = require('express');
+const app = express();
 
 admin.initializeApp(functions.config().firebase);
 
-exports.shortenUrl = functions.https.onRequest((request, response) => {
-  console.log(request);
-  response.send("Shorten URL");
-});
+const host = 'https://w0rd-it.firebaseapp.com/';
 
-exports.lookUpHash = functions.https.onRequest((request, response) => {
+app.get('/*', (request, response) => {
   const url_parts = url.parse(request.url);
   let hash = url_parts.pathname.replace('/', '');
   console.log('Looking up hash:', hash);
@@ -37,9 +36,9 @@ exports.lookUpHash = functions.https.onRequest((request, response) => {
       throw Error(`Hash ${hashData.hash} does not have URL assigned to it`);
     })
     .catch(error => {
-      console.log(error);
-      response.redirect(`${host}404.html`).send();
+      response.sendFile(path.join(__dirname, '/views/404.html'));
       return;
     })
 });
 
+exports.app = functions.https.onRequest(app);
