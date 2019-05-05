@@ -2,21 +2,17 @@
 
 # A word-based URL shortener
 
-Instead of a random hash, you get a memorable word. Try it out it at [w0rd.it](https://w0rd.it). 
+Is there a long URL you need to access right here and now? URL shorteners are great, but they give you a short but hard-to-memorize hash.
+Never again that shall happen to you. Here is [w0rd.it](https://w0rd.it). Instead of a random hash, you get a memorable word for your URL.
 
-[WordNet](https://wordnet.princeton.edu/download/current-version) is a great word dictionary and serves words and explanations.
+The words come from [WordNet](https://wordnet.princeton.edu/download/current-version).
 
 ## Development 
 
-The backend is deployed on Google Firebase, the frontend is written in ancient Angular 1.4.
+The backend is "serverlessly" deployed on Google Firebase. The frontend is written in React.
 
 ## Deployment
 To deploy everything run:
 ```
 ./deploy
-```
-
-To deploy cloud functions, run:
-```
-node_modules/firebase-tools/lib/bin/firebase.js deploy --only functions
 ```
