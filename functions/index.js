@@ -2,8 +2,8 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const path = require('path');
 const url = require('url');
-
 const express = require('express');
+
 const app = express();
 
 admin.initializeApp(functions.config().firebase);
