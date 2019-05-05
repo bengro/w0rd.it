@@ -1,25 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <form id="wordItForm">
+    <header>
+        <div class="bubble" ng-if="submitted">
+            <div class="bubble__triangle"></div>
+        </div>
+
+        <div class="title">
+            <span class="title__name">w0rd.it</span>
+            <span class="title__slash">/</span>
+            <span class="title__hash"></span>
+        </div>
+
+        <div class="primer">Get a memorable word for your bad-ass URL.</div>
+    </header>
+
+    <fieldset class="content">
+        <div class="control">
+            <input class="control__input" type="text" placeholder="Paste your URL."/>
+            <button class="control__button" type="submit">
+                <span>Word it</span>
+            </button>
+        </div>
+    </fieldset>
+
+    <footer>A serverless pet project.</footer>
+</form>
   );
 }
 
