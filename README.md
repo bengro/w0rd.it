@@ -1,3 +1,5 @@
+[![travis](https://travis-ci.org/bengro/w0rd.it.svg?branch=master)]()
+
 # A word-based URL shortener
 
 Instead of a random hash, you get a memorable word. Try it out it at [w0rd.it](https://w0rd.it). 
