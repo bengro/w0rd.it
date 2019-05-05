@@ -8,8 +8,6 @@ const app = express();
 
 admin.initializeApp(functions.config().firebase);
 
-const host = 'https://w0rd-it.firebaseapp.com/';
-
 app.get('/*', (request, response) => {
   const url_parts = url.parse(request.url);
   let hash = url_parts.pathname.replace('/', '');
