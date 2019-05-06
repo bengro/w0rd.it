@@ -23,21 +23,16 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+
     <div id="root"></div>
-    <script type="application/javascript" src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
-    <script type="application/javascript" src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
-    <script type="application/javascript" src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
+
+    <script type="application/javascript" src="https://www.google.com/recaptcha/api.js?render=6LcNF6IUAAAAADG5_tFJSPxGh78iZuK4miYRcZHt"></script>
     <script type="application/javascript">
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyCUoNeANw-js9SdAQUYfsxRfOly9c2q7A4",
-        authDomain: "w0rd-it.firebaseapp.com",
-        databaseURL: "https://w0rd-it.firebaseio.com",
-        projectId: "w0rd-it",
-        storageBucket: "w0rd-it.appspot.com",
-        messagingSenderId: "973427618174"
-      };
-      firebase.initializeApp(config);
+      grecaptcha.ready(function() {
+        grecaptcha.execute('6LcNF6IUAAAAADG5_tFJSPxGh78iZuK4miYRcZHt', {action: 'homepage'}).then(function(token) {
+          window.reCaptchaToken = token;
+        });
+      });
     </script>
   </body>
 </html>

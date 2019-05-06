@@ -23,8 +23,11 @@ a {
     color: rgb(70, 41, 81);
 }
 
+#root {
+    width: 80%;
+}
+
 #wordItForm {
-    width: 60%;
     margin: auto;
     text-align: center;
 }
