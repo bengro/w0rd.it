@@ -5,8 +5,10 @@ const express = require('express');
 
 const lookup = require('./lookup.js');
 const extractHash = require('./extractHash.js');
+const reserveHash = require('./reserveHash.js');
 
 const app = express();
+app.use(express.bodyParser());
 
 admin.initializeApp(functions.config().firebase);
 
@@ -29,6 +31,18 @@ app.get('/*', (request, response) => {
       response.sendFile(path.join(__dirname, '/views/404.html'));
       return;
     });
+});
+
+app.post('/shorten', (request, response) => {
+  const url = request.body.url;
+  const token = request.body.token;
+
+  console.log(`Request to shorten URL ${url}`);
+
+  return reserveHash(url)
+  .then(hash => {
+    return hash;
+  });
 });
 
 exports.app = functions.https.onRequest(app);
