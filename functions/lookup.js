@@ -10,8 +10,8 @@ module.exports = function(hash) {
     .get()
     .then(doc => {
       if (!doc.exists) {
-        throw Error('Hash does not exist for', hash);
+        throw Error(`Hash does not exist for ${hash}`);
       }
       return doc.data();
     });
-}
+};

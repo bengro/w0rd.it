@@ -5,7 +5,7 @@
 html, body {
     height: 100%;
     background: rgb(70, 41, 81);
-    font-family: Helvetica Neue, Helvetica, Arial;
+    font-family: 'Roboto', Helvetica Neue, Helvetica, Arial;
     font-size: 100%;
 }
 
@@ -25,6 +25,15 @@ a {
 
 #root {
     width: 80%;
+}
+
+#wordItForm .warning {
+    color: #b3765a;
+    margin: 0;
+    padding: 20px 0;
+    border-radius: 5px;
+    width: 30%;
+    font-size: 100%;
 }
 
 #wordItForm {

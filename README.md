@@ -1,18 +1,22 @@
 [![travis](https://travis-ci.org/bengro/w0rd.it.svg?branch=master)]()
 
-# A word-based URL shortener
+# w0rd.it
+Remember a long URL on the spot! 
 
-Is there a long URL you need to access right here and now? URL shorteners are great, but they give you a short but hard-to-memorize hash.
-Never again that shall happen to you. Here is [w0rd.it](https://w0rd.it). Instead of a random hash, you get a memorable word for your URL.
+URL shorteners are great, but their hashes are hard-to-memorize. A real bummer if you want to remember it and you have a poor short-term memory like me.
+That shall not happen to you anymore. 
 
-The words come from [WordNet](https://wordnet.princeton.edu/download/current-version).
+Here is [w0rd.it](https://w0rd.it). Instead of a random hash, you get a memorable word for your URL.
+
+## Notes
+* Credits to [WordNet](https://wordnet.princeton.edu/download/current-version) for the words.
+* Inspired by [what3words](https://what3words.com/).
 
 ## Development 
-
-The backend is "serverlessly" deployed on Google Firebase. The frontend is written in React.
+The backend is "serverlessly" deployed on Google Firebase. The frontend is written in React. This is a side project.
 
 ## Deployment
-To deploy everything run:
+To deploy everything to firebase run:
 ```
 ./deploy
 ```

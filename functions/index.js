@@ -2,13 +2,14 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const path = require('path');
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const lookup = require('./lookup.js');
 const extractHash = require('./extractHash.js');
 const reserveHash = require('./reserveHash.js');
 
 const app = express();
-app.use(express.bodyParser());
+app.use(bodyParser.json());
 
 admin.initializeApp(functions.config().firebase);
 
@@ -26,23 +27,43 @@ app.get('/*', (request, response) => {
 
       throw Error(`Hash ${hashData.hash} does not have URL assigned to it`);
     })
-    .catch(error => {
+    .catch(() => {
       console.log('Could not find hash', hash);
       response.sendFile(path.join(__dirname, '/views/404.html'));
-      return;
     });
 });
 
 app.post('/shorten', (request, response) => {
-  const url = request.body.url;
-  const token = request.body.token;
+  const payload = JSON.parse(request.body);
+  const url = payload.url;
+  response.set({
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  });
 
   console.log(`Request to shorten URL ${url}`);
 
-  return reserveHash(url)
-  .then(hash => {
-    return hash;
-  });
+  reserveHash(url)
+    .then(entry => {
+      const payload = {
+        hash: entry.hash,
+        description: entry.description,
+        url: url
+      };
+
+      console.log('Returning reserved hash', payload);
+
+      response.status(201).json(payload);
+
+      return entry;
+    })
+    .catch(error => {
+      console.error('Error shortening URL:', error);
+
+      response
+        .status(400)
+        .json({error: error})
+    });
 });
 
 exports.app = functions.https.onRequest(app);
