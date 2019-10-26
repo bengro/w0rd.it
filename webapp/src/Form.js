@@ -6,6 +6,7 @@ import axios from 'axios'
 export default class Form extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       hash: '',
       hasFired: false,
@@ -21,9 +22,11 @@ export default class Form extends React.Component {
           <p className={'warning'}><span aria-label={"Poo emoji"} role="img">💩</span>Not a URL</p>}
           <input className="control__input" type="text" placeholder="Paste your URL." value={this.state.hash}
                  onChange={this.updateHash()}/>
+          {!this.state.hasFired &&
           <button className="control__button" type="submit" onClick={this.submit} disabled={this.state.hasFired}>
             <span>Shorten</span>
           </button>
+          }
         </form>
       </fieldset>
     );
@@ -50,7 +53,7 @@ export default class Form extends React.Component {
       }
     });
 
-    return response.data;
+    this.props.onSuccessfulSubmit(response.data);
   };
 
   updateHash = () => (event) => {

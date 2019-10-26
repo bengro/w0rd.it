@@ -3,22 +3,20 @@ import React from 'react';
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      descriptionActive: false
-    };
   }
 
   render() {
     return (
       <header>
-        {this.state.descriptionActive && <div className="bubble">
+        {this.props.shortenedUrl.description && <div className="bubble">
+          {this.props.shortenedUrl.description}
           <div className="bubble__triangle"></div>
-          </div>}
+        </div>}
 
         <div className="title">
           <span className="title__name">w0rd.it</span>
           <span className="title__slash">/</span>
-          <span className="title__hash"></span>
+          <span className="title__hash">{this.props.shortenedUrl.hash}</span>
         </div>
 
         <div className="primer">Get a memorable word for your bad-ass URL.</div>
@@ -26,3 +24,7 @@ export default class Header extends React.Component {
     )
   }
 }
+
+Header.defaultProps = {
+  shortenedUrl: {},
+};
