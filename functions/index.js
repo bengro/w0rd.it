@@ -3,13 +3,14 @@ const admin = require('firebase-admin');
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const lookup = require('./lookup.js');
 const extractHash = require('./extractHash.js');
 const reserveHash = require('./reserveHash.js');
 
 const app = express();
-app.use(bodyParser.json());
+app.use(bodyParser.json(), cors());
 
 admin.initializeApp(functions.config().firebase);
 
@@ -34,7 +35,8 @@ app.get('/*', (request, response) => {
 });
 
 app.post('/shorten', (request, response) => {
-  const payload = JSON.parse(request.body);
+  console.log('Received request to shorten URL with payload', request.body);
+  const payload = request.body;
   const url = payload.url;
   response.set({
     'Accept': 'application/json',
@@ -64,6 +66,8 @@ app.post('/shorten', (request, response) => {
         .status(400)
         .json({error: error})
     });
+
+  return response;
 });
 
 exports.app = functions.https.onRequest(app);

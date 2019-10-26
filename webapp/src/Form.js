@@ -1,6 +1,7 @@
 import React from 'react';
 import {isValidUrl} from "./validateUrl";
 import {Constants} from "./Constants";
+import axios from 'axios'
 
 export default class Form extends React.Component {
   constructor(props) {
@@ -28,7 +29,7 @@ export default class Form extends React.Component {
     );
   }
 
-  submit = (event) => {
+  submit = async (event) => {
     event.preventDefault();
 
     if (!isValidUrl(this.state.hash)) {
@@ -42,20 +43,14 @@ export default class Form extends React.Component {
       hasFired: true
     });
 
-    fetch(Constants.shortenLink, {
+    const response = await axios.post(Constants.shortenLink, {url: this.state.hash}, {
       method: 'POST',
-      mode: 'no-cors',
       headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({url: this.state.hash})
-    })
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (shortenedHash) {
-        console.log(shortenedHash);
-      })
+        "Content-Type": "application/json;charset=utf-8"
+      }
+    });
+
+    return response.data;
   };
 
   updateHash = () => (event) => {
