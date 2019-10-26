@@ -13,7 +13,7 @@ Here is [w0rd.it](https://w0rd.it). Instead of a random hash, you get a memorabl
 * Inspired by [what3words](https://what3words.com/).
 
 ## Development 
-The backend is "serverlessly" deployed on Google Firebase. The frontend is written in React. This is a side project.
+The backend is "serverlessly" deployed on Google Firebase. The frontend is quickly hacked together in React. This is a side project.
 
 ## Deployment
 To deploy everything to firebase run:
