@@ -9,7 +9,7 @@ const cors = require('cors');
 const lookup = require('./lookup.js');
 const extractHash = require('./extractHash.js');
 const reserveHash = require('./reserveHash.js');
-const isHuman = require("./isHuman");
+const isHuman = require("./isHuman.js");
 
 const firebase = functions.config().firebase;
 
@@ -45,15 +45,11 @@ app.post('/shorten', async (request, response) => {
   const url = payload.url;
   const recaptchaToken = payload.recaptchaToken;
 
-  if (!(await isHuman(recaptchaToken))) {
+  const isAuthenticRequest = await isHuman(recaptchaToken);
+  if (!isAuthenticRequest) {
     console.log('Rejecting request due to robot suspicion.');
     throw Error('I have a suspicion you are not human, sorry.')
   }
-
-  response.set({
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-  });
 
   console.log(`Request to shorten URL ${url}`);
 

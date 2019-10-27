@@ -1,7 +1,7 @@
 const rp = require('request-promise');
 const functions = require('firebase-functions');
 
-export async function isHuman(token) {
+module.exports = async function isHuman(token) {
   return rp({
     uri: 'https://recaptcha.google.com/recaptcha/api/siteverify',
     method: 'POST',
@@ -16,4 +16,4 @@ export async function isHuman(token) {
   }).catch(reason => {
     console.log("Recaptcha request failure", reason)
   })
-}
+};

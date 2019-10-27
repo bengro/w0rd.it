@@ -36,7 +36,6 @@ module.exports = function reserveHash(url) {
           registered: new Date().toISOString()
         })
         .then(() => entry)
-
     })
     .catch(error => {
       console.error(error);
