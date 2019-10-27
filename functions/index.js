@@ -1,4 +1,5 @@
 const functions = require('firebase-functions');
+
 const admin = require('firebase-admin');
 const path = require('path');
 const express = require('express');
@@ -8,11 +9,14 @@ const cors = require('cors');
 const lookup = require('./lookup.js');
 const extractHash = require('./extractHash.js');
 const reserveHash = require('./reserveHash.js');
+const isHuman = require("./isHuman");
+
+const firebase = functions.config().firebase;
 
 const app = express();
 app.use(bodyParser.json(), cors());
 
-admin.initializeApp(functions.config().firebase);
+admin.initializeApp(firebase);
 
 app.get('/*', (request, response) => {
   const hash = extractHash(request.url);
@@ -34,10 +38,18 @@ app.get('/*', (request, response) => {
     });
 });
 
-app.post('/shorten', (request, response) => {
+app.post('/shorten', async (request, response) => {
   console.log('Received request to shorten URL with payload', request.body);
+
   const payload = request.body;
   const url = payload.url;
+  const recaptchaToken = payload.recaptchaToken;
+
+  if (!(await isHuman(recaptchaToken))) {
+    console.log('Rejecting request due to robot suspicion.');
+    throw Error('I have a suspicion you are not human, sorry.')
+  }
+
   response.set({
     'Accept': 'application/json',
     'Content-Type': 'application/json',

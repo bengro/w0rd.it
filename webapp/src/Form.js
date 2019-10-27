@@ -48,7 +48,10 @@ export default class Form extends React.Component {
       hasFired: true
     });
 
-    const response = await axios.post(Constants.shortenLink, {url: this.state.url}, {
+    const response = await axios.post(Constants.shortenLink, {
+      url: this.state.url,
+      recaptchaToken: window.reCaptchaToken
+    }, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json;charset=utf-8"
