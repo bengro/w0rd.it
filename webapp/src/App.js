@@ -18,8 +18,8 @@ class App extends React.Component {
         <Header shortenedUrl={this.state.shortenedUrl}/>
         <Form onSuccessfulSubmit={this.renderUpdate}/>
         <footer>
-          Code on <a href="https://github.com/bengro/w0rd.it">Github</a> |
-          Inspired by <a href="https://what3words.com/" target="_blank">what3words</a>
+          Code on <a href="https://github.com/bengro/w0rd.it" target="_blank" rel="noopener noreferrer">Github</a> |
+          Inspired by <a href="https://what3words.com/" target="_blank" rel="noopener noreferrer">what3words</a>
         </footer>
       </div>
     );
