@@ -23,8 +23,9 @@ export default class Form extends React.Component {
           <p className={'warning'}><span aria-label={"Poo emoji"} role="img">💩</span>Not a URL</p>}
           <input className="control__input" type="text" placeholder="Paste your URL." value={this.state.url}
                  onChange={this.updateHash()}/>
-          <button className="control__button" type="submit" onClick={this.submit}>
+          <button className="control__button" type="submit" onClick={this.submit} disabled={this.state.hasFired}>
             <span>Shorten</span>
+
           </button>
         </form>}
         {this.state.hasReturned && <div>
