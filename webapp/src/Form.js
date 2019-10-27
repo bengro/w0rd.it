@@ -8,26 +8,28 @@ export default class Form extends React.Component {
     super(props);
 
     this.state = {
-      hash: '',
+      url: '',
       hasFired: false,
-      hasError: false
+      hasError: false,
+      hasReturned: false
     };
   }
 
   render() {
     return (
       <fieldset className="content">
-        <form className="control">
+        {!this.state.hasReturned && <form className="control">
           {this.state.hasError &&
           <p className={'warning'}><span aria-label={"Poo emoji"} role="img">💩</span>Not a URL</p>}
-          <input className="control__input" type="text" placeholder="Paste your URL." value={this.state.hash}
+          <input className="control__input" type="text" placeholder="Paste your URL." value={this.state.url}
                  onChange={this.updateHash()}/>
-          {!this.state.hasFired &&
-          <button className="control__button" type="submit" onClick={this.submit} disabled={this.state.hasFired}>
+          <button className="control__button" type="submit" onClick={this.submit}>
             <span>Shorten</span>
           </button>
-          }
-        </form>
+        </form>}
+        {this.state.hasReturned && <div>
+          <input id="url" className="control__output" type="text" value={this.state.url}/>
+        </div>}
       </fieldset>
     );
   }
@@ -35,7 +37,7 @@ export default class Form extends React.Component {
   submit = async (event) => {
     event.preventDefault();
 
-    if (!isValidUrl(this.state.hash)) {
+    if (!isValidUrl(this.state.url)) {
       this.setState({
         hasError: true
       });
@@ -46,11 +48,16 @@ export default class Form extends React.Component {
       hasFired: true
     });
 
-    const response = await axios.post(Constants.shortenLink, {url: this.state.hash}, {
+    const response = await axios.post(Constants.shortenLink, {url: this.state.url}, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json;charset=utf-8"
       }
+    });
+
+    this.setState({
+      ...this.state,
+      hasReturned: true
     });
 
     this.props.onSuccessfulSubmit(response.data);
@@ -58,7 +65,7 @@ export default class Form extends React.Component {
 
   updateHash = () => (event) => {
     this.setState({
-      hash: event.target.value
+      url: event.target.value
     });
 
     if (this.state.hasFired) {

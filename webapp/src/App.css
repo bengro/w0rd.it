@@ -67,6 +67,15 @@ a {
     border: none;
 }
 
+.control__output {
+    font-size: 120%;
+    padding: 20px;
+    border: none;
+    width: 100%;
+    text-align: left;
+    background: transparent;
+}
+
 .control__error {
     background-color: #FFD1D1;
     padding: 17px;
