@@ -179,6 +179,11 @@ footer {
     font-size: 0.8rem;
 }
 
+footer a {
+    color: #BDAEC4;
+    text-decoration: none;
+}
+
 @media (max-width: 650px) {
 
     #wordItForm {

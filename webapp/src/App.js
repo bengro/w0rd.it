@@ -17,7 +17,10 @@ class App extends React.Component {
       <div id="wordItForm">
         <Header shortenedUrl={this.state.shortenedUrl}/>
         <Form onSuccessfulSubmit={this.renderUpdate}/>
-        <footer>A pet project.</footer>
+        <footer>
+          Code on <a href="https://github.com/bengro/w0rd.it">Github</a> |
+          Inspired by <a href="https://what3words.com/" target="_blank">what3words</a>
+        </footer>
       </div>
     );
   }
